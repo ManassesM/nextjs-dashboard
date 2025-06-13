@@ -1,17 +1,22 @@
 import { fetchInvoicesPages } from '@/app/lib/data';
-import { lusitana } from "@/app/ui/fonts";
-import { CreateInvoice } from "@/app/ui/invoices/buttons";
+import { lusitana } from '@/app/ui/fonts';
+import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import Pagination from '@/app/ui/invoices/pagination';
-import Table from "@/app/ui/invoices/table";
-import Search from "@/app/ui/search";
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
-import { Suspense } from "react";
+import Table from '@/app/ui/invoices/table';
+import Search from '@/app/ui/search';
+import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
+import { Metadata } from 'next';
+import { Suspense } from 'react';
 
-export default async function Page(props: { 
-  searchParams?: Promise<{ 
+export const metadata: Metadata = {
+  title: 'Invoices',
+};
+
+export default async function Page(props: {
+  searchParams?: Promise<{
     query?: string;
     page?: string;
-   }>; 
+  }>;
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
@@ -34,5 +39,5 @@ export default async function Page(props: {
         <Pagination totalPages={totalPages} />
       </div>
     </div>
-  )
+  );
 }
